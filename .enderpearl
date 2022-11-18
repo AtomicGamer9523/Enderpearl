@@ -1,4 +1,5 @@
-!ENDERPEARL
+Enderpearl Scripts
+Anything outside of 
 
 
 Ran Before every single script
@@ -11,6 +12,7 @@ Ran After Every Single Script
 echo Ran After running main script
 )
 
+
 Ran when running 'build' or '.'
 #BUILD(
 echo it worked > it_worked.txt
@@ -18,7 +20,7 @@ echo Ran if running '.' or 'build'
 )
 
 
-Ran when you run 'any_other_thing'
-#ANY_OTHER_THING(
+Ran when you run 'mycommand'
+#MYCOMMAND(
 echo Hello World
 )
