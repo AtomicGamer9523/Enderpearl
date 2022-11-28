@@ -1,40 +1,11 @@
 import platform, os, enderpearl
 from enum import Enum
 
-DEFAULT_FILE_BUILD = """This file is used for importing your own projects into Rinux
-NOT for building Rinux
-Allowed commands are: 'STASIS', 'PRE', and 'POST', all other ones will be ignored
-DO NOT CHANGE THE ORDER OF COMMANDS
-
-#PRE(
-git clone https://github.com/AtomicGamer9523/std3
-git clone https://github.com/AtomicGamer9523/rinuxcore
-)
-
-
-#POST(
-echo STASIS Complete
-)
-
-
-#STASIS(
-echo YOUR PACKAGES HERE
-)"""
-DEFAULT_FILE_CONFIG = """this file is used for configuring Rinux
-NOT for building Rinux
-Allowed properties are: 'NAME', 'QUIET', and 'VERSION', all other ones will be ignored
-
-Name for the Project, string
-#NAME(MyProject)
-
-Project's version, string
-#VERSION(v0.1.0)
-
-If no debug info should be printed, will still print errors bool -> 'true' or 'false'
-#QUIET(false)
-
-Automatically update Stasises
-#AUTOSTASIS(true)"""
+DEFAULT_FILE_BUILD = """This file is used for building
+only supports PRE, POST, and STASIS operations
+modify default view in parser.py"""
+DEFAULT_FILE_CONFIG = """this file is used for configuration
+modify default view in parser.py"""
 
 class __TextKind(Enum):
     ConfigValue = 0,
