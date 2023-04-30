@@ -1,49 +1,25 @@
-import enderpearl
+from enderpearl import *
 
+class MyCommand(Command):
+    def __init__(self) -> None: super().__init__("mycommand",
+        simple = "My command description",
+        description = "mycommand <args>"
+    )
+    def run(self, cliargs: list[str]) -> bool:
+        if h(self.name, cliargs): return HANDLED
+        LOG.log("My command has been run!")
+        return HANDLED
 
-"""
-If the the '--release' flag is passed, this will be set to True
-otherwise it will be set to False
-Modifications highly unrecommended
-"""
-RELEASE: bool
+MYCOMMAND = MyCommand()
+COMMANDS.add(MYCOMMAND)
 
+def command_parser(cmd: str, args: list[str]) -> bool:
+    if cmd.startswith("help"):
+        if HELP.run(args): return HANDLED
 
-"""
-Called to retrieve the help command value
-called when the user runs the help command
-Modification highly recommended
-"""
-def helper() -> str:
-    return "HELP MESSAGE HERE"
-
-
-"""
-Command parser, called when a command has been recieved
-This is where you can add your own commands
-Modification highly recommended
-"""
-def command_parser(cmd: str) -> None:
-    # Automatically handles help command
-    # Should be the first to be handled
-    if cmd.startswith("help"): return print(helper())
-
-
-
-    # This is where you can add your own commands
     elif cmd.startswith("mycommand"):
-        return run(cmd)
+        if MYCOMMAND.run(args): return HANDLED
 
+    return NOT_HANDLED
 
-
-    # Runs command from .enderpearl file
-    else: return enderpearl.parser.default_run(cmd)
-
-
-"""
-Recomended way to handle your own commands
-Modification encouraged
-"""
-def run(cmd: str) -> None:
-    print("Recieved command: " + cmd + ", release: " + str(enderpearl.extension.RELEASE))
-    return
+def helper() -> str: return COMMANDS.as_list_help()

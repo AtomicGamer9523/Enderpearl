@@ -1,8 +1,21 @@
-"""
-Do not remove these imports, as they are re-imported in the main file.
-"""
-import enderpearl.extension as extension
-import enderpearl.parser as parser
+from enderpearl.utils import *
+import x
+
+def default_run(cmd: str) -> None:
+    contents = ""
+    try:
+        f = open(".enderpearl", "rt")
+        contents = f.read()
+        f.close()
+    except(FileNotFoundError): return
+    tkn = x.tokenize(contents)
+    if cmd == "build" or cmd == ".":
+        x.runcmd("build",tkn,"")
+    elif cmd == "pre" or cmd == "post":
+        print("Sorry, you may not use self special operation")
+        exit(1)
+    else:
+        x.runcmd(cmd,tkn)
 
 # 
 # MIT License
